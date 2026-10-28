@@ -1,0 +1,243 @@
+items:
+- short_id: kfimkHSD
+  seed: |
+    # Narrative
+
+    A generative design and data visualization studio portfolio. The narrative flows from an abstract mission statement through service offerings to a curated project gallery. The hero establishes expertise in "new ways of experiencing data" — blending design, software, and aesthetics from data and human behavior. Three solution cards anchor the studio's capabilities, followed by an asymmetric masonry grid of selected works showcasing generative art installations, data visualizations, and computational design tools for clients including a major pharma company, a tech giant's arts initiative, and a fashion retailer.
+
+    # Tech Stack
+
+    Static site with vanilla JS. CSS custom properties for theming. Font preloading with `crossorigin`. Lazy image loading via `lazysizes`. Lightbox zoom via `intense.min.js`.
+
+    # Layout
+
+    Dark canvas with centered narrative containers. Maximum content width: `1350px`. Hero text constrained to `640px` centered. Three-column flex grid for Solutions (`flex-basis: 30%`). Selected Works uses an asymmetric masonry pattern — alternating large feature tiles (spanning ~60% width) with smaller companion tiles (~30%). Generous vertical rhythm: `5em` top padding on hero, `3rem` gaps between sections. Section headers centered with green accent divider.
+
+    # Typography
+
+    Dual-font system: **Circular-Medium** (headings, navigation, emphasis) paired with **DIN** body text (Regular and Light weights). Hero statement uses Light DIN with Circular-Medium highlights wrapped in `<span>`. Body size: `1.18rem` for abstracts. Captions: `0.7272rem` in brand green. Navigation: `0.8rem` uppercase styling via letter-spacing. Headings: `2rem` for h1, `1.35rem` for h2.
+
+    # Color
+
+    Near-black foundation: `#080808` (darkest grey) to `#141414` (dark grey) backgrounds. Primary accent: `#3aa68e` (teal-green) — used for navigation links, captions, dividers, and button borders. Secondary accent: `#ffed1f` (yellow). Text hierarchy: white (`#fff`) for emphasized spans, `#969696` (lighter grey) for secondary body text. CSS variables: `--color-green`, `--color-darkest-grey`, `--color-lighter-grey`.
+
+    # Imagery
+
+    Project thumbnails dominate — generative 3D renders, data visualization screenshots, installation photography. Thumbnails maintain `1000x610px` aspect ratio. Colorful generative sculptures (teal-gold gradients, rainbow point clouds) contrast against the dark UI. Black-and-white data viz imagery provides tonal variation. Figcaptions overlay titles in brand green with white project names.
+
+    # Components
+
+    **Navigation**: Absolute-positioned transparent bar converting to fixed black bar on scroll (`scroll` class at `150px`). Hide-on-scroll behavior (`nav-hidden` when scrolling down). Mobile hamburger with animated X transformation.
+
+    **Buttons**: Outlined pills with `2px solid #3aa68e` border, `38px` height, `0.7272rem` Circular-Medium text. Hover inverts border to white.
+
+    **Project Cards**: Figure/figcaption pattern. Image with overlaid title (white) and category (green). Flex-basis responsive: `30%` desktop, `100%` mobile.
+
+    **Dividers**: Centered green bars — `1.5rem` width, `0.225rem` height — marking section headers.
+
+    # Motion
+
+    Navigation state transitions: `0.3s` ease on background-color, top position, padding. Link hover: `0.25s ease-in-out` on text-decoration-color and color. Button border: `0.2s ease-in-out`. Mobile menu: hamburger rotates `45deg` with span transforms. Image lazy-load blur fade: `0.3s` opacity/filter transition. Scroll-direction-aware nav hide/reveal.
+
+    # Algorithms
+
+    Standard implementation, no special design.
+
+    # Material
+
+    Standard implementation, no special design.
+
+    # Craft
+
+    Underline link treatment: `text-decoration-thickness: 2px`, `text-underline-offset: 4px`, transitioning from transparent to visible on hover. Logo SVG with inline path data. Figcaption negative margin (`-1.05em`) creates tight image-caption coupling. Form inputs with transparent backgrounds and bottom borders only.
+
+    # Coherence
+
+    The dark canvas lets the colorful generative artwork breathe. The green accent unifies navigation, captions, and CTAs without overwhelming. The dual-font system (geometric Circular + technical DIN) mirrors the studio's blend of design craft and computational precision. Asymmetric masonry layout breaks rigid grids while maintaining visual hierarchy.
+- short_id: VeMctJsu
+  seed: |
+    # Narrative
+
+    A CRM product landing page for founders/sales teams. The narrative flows from an abstract data visualization hero (representing "chaos to clarity") through feature sections (productivity features, feedback integration, workflow speed) to team values and a waitlist CTA. The visual metaphor positions the product as bringing order to scattered sales data.
+
+    # Tech Stack
+
+    Next.js with Tailwind CSS. Custom variable fonts (Denim, GT Cinetype, Muoto) loaded via @font-face. CSS custom properties for theming. No visible animation libraries.
+
+    # Layout
+
+    Full-bleed hero with abstract scatter-plot visualization filling the viewport. Content sections alternate between narrow centered text blocks (max-width ~720px) and full-width feature illustrations. Sticky table of contents on the right side during scroll. Asymmetric spacing with generous vertical rhythm (sections separated by substantial whitespace).
+
+    # Typography
+
+    Three-font system: **Muoto** (variable, sans-serif) for UI and body, **Denim** (serif) for editorial headings and narrative voice, **GT Cinetype** (monospaced) for labels and technical accents. Headings use tight tracking with occasional italic emphasis. Body text set at comfortable reading size with ample line-height.
+
+    # Color
+
+    Muted sage green dominates: **#85C093** (theme color, hero background), **#007f24** (primary action green), **#09352e** (dark text). Background is off-white **#f7f7f7** with subtle gray scale for secondary text (#9ba8a7, #71807e). The palette evokes organic/natural feel distinct from typical corporate blue.
+
+    # Imagery
+
+    Hero features an abstract scatter-plot visualization with circles of varying sizes on a grid — representing data points moving from chaos to clarity. Feature sections use detailed UI mockups showing the actual product interface (CRM views, feedback widgets). A grainy noise texture overlay adds tactile quality to sections. All imagery is functional/product-focused rather than decorative stock.
+
+    # Components
+
+    Buttons use pill-shaped radius with 1px border treatment. Primary buttons filled in brand green; secondary buttons outlined. Cards for feature showcases have subtle shadows and rounded corners. Form inputs in the waitlist section use segmented underline style. A circular floating action button with distinctive purple fill (#433787).
+
+    # Motion
+
+    Standard implementation, no special design.
+
+    # Algorithms
+
+    The hero visualization uses a scatter-plot algorithm with circles positioned on a grid. Circles vary in size and opacity to create depth — appears to be a static generative layout rather than real-time data visualization. Grid lines provide structural rhythm.
+
+    # Material
+
+    Grainy noise texture overlay on hero and select sections — see references/material.md for implementation. Subtle 1px borders with low-opacity borders (#0000001a) create separation without heaviness.
+
+    # Craft
+
+    Custom scrollbar styling (thin, green thumb). Selection color inverted to dark green background with light text. Focus rings use brand green with 2px width and offset. Careful attention to hairline borders (0.5px, 1px) throughout.
+
+    # Coherence
+
+    The sage-green palette, grainy texture, and three-font system work together to position the product as thoughtful and crafted — distinct from aggressive sales-tech aesthetics. The "chaos to clarity" visualization in the hero directly embodies the product promise.
+- short_id: ID8UYnNT
+  seed: |
+    # Narrative
+
+    Personal portfolio of a creative director and product designer. The narrative unfolds as a single immersive statement — establishing a tone of deliberate craft. The text introduces three interconnected roles (founder/creative director, product designer, photographer), each linked to a different visual world revealed through hover. The experience is intimate and confident, prioritizing presence over volume.
+
+    # Tech Stack
+
+    WordPress with Semplice theme (v4.4.11). Custom CSS for typography and interactions. Google Fonts (Inter, Poppins) loaded alongside self-hosted fonts (TT-Hoves-Pro, TTCommons-Medium). Vanilla JS handles the hover-reveal image system.
+
+    # Layout
+
+    Fullscreen single-section layout with fluid container (max-width: 1230px). Content anchored left with generous left padding (8.33rem on desktop, scaling down responsively). Negative space dominates — black background creates a void that lets typography and revealed imagery breathe. Three background image sections stacked and positioned fixed behind the content layer.
+
+    # Typography
+
+    Dual font system: **TT-Hoves-Pro** (custom geometric sans) for the hero statement at 5rem/4.11rem line-height with tight negative letter-spacing (-0.155rem), creating a compressed, architectural feel. **Poppins** at 700 weight for navigation links, set small (0.67rem) with wide letter-spacing (0.06rem) in all-caps — creating contrast between the expressive hero and functional micro-text.
+
+    # Color
+
+    Near-monochrome palette: pure black background (#000000), mid-gray text (#444444) for the hero statement, shifting to teal on hover (#00948c). Navigation links in a lighter gray that maintains hierarchy without competing. The color story is restraint — letting the revealed imagery provide chromatic moments.
+
+    # Imagery
+
+    Three fullscreen background layers (section_9f541c0ba, section_4333a1765, section_2d5ab7dcc) revealed via hover interaction on corresponding text links. Video backgrounds autoplay muted with object-fit: cover. The images are not decorative — they are the emotional payload, surfaced only on intentional interaction.
+
+    # Components
+
+    Navigation links styled as minimal text buttons — no borders, no backgrounds, just spaced uppercase letters. Hover state changes color to teal (#00948c). No traditional buttons or cards; the entire interaction model is text-driven.
+
+    # Motion
+
+    Custom hover-reveal system: hovering a role link ("founder and creative director", "product designer", "photographer") triggers opacity transition (0.3s ease-in-out) on corresponding background image sections. Simultaneously, non-hovered text spans fade to 20% opacity (transition: 0.2s linear), creating a focus-isolation effect. The hovered link maintains full opacity while its associated imagery fades in (scale: 1.1 on active state). See references/motion.md for implementation.
+
+    # Algorithms
+
+    Standard implementation, no special design.
+
+    # Material
+
+    Standard implementation, no special design.
+
+    # Craft
+
+    Custom cursor behavior via CSS transitions. Z-index layering ensures text remains above revealed imagery. Font files self-hosted for performance and control. Responsive breakpoints at 1169px, 991px, 767px, 543px maintain readability across devices.
+
+    # Coherence
+
+    The design achieves unity through subtraction. Every element serves the core statement — the black void creates anticipation, the typography establishes voice, and the hover-reveal system rewards exploration. The interaction model (text triggers image) inverts typical portfolio patterns, making the designer's work feel discovered rather than displayed.
+  references:
+    motion: |
+      # Motion Reference
+
+      ## Hover-Reveal Image System
+
+      ### What it does
+      A custom interaction where hovering over specific text links reveals corresponding fullscreen background images/videos, while simultaneously dimming non-hovered text elements to isolate focus.
+
+      ### Implementation
+
+      **HTML Structure:**
+      ```html
+      <section class="content-block hero-image hero-image1" id="section_9f541c0ba">
+        <div class="background-video">
+          <video autoplay loop muted playsinline>
+            <source src="assets/media/35be6da8ba400a-intro.mp4" type="video/mp4"/>
+          </video>
+        </div>
+      </section>
+
+      <div class="column-content hero-text">
+        <a data-image="hero-image1" href="...">Founder and creative director</a>
+        <span class="text-span">,</span>
+        <a data-image="hero-image2" href="...">product designer</a>
+        <span class="text-span">,</span>
+        <a data-image="hero-image3" href="...">photographer</a>
+      </div>
+      ```
+
+      **CSS (from inline style block, lines 141-191 in frozen HTML):**
+
+      ```css
+      /* Background image sections start hidden */
+      .hero-image {
+        position: fixed !important;
+        transform-origin: center;
+        opacity: 0;
+        transition: 0.3s ease-in-out all;
+      }
+
+      /* Active state on hover */
+      .hero-image.overa {
+        position: fixed !important;
+        transform-origin: center;
+        opacity: 0;
+        transition: 0.3s ease-in-out all;
+        opacity: 1;
+        scale: 1.1;
+      }
+
+      /* Text spans transition */
+      span.text-span {
+        transition: all 0.2s linear;
+      }
+
+      /* Dim non-hovered text when any link is hovered */
+      span.overa span.text-span,
+      span.overa a {
+        opacity: 0.2 !important;
+        transition: all 0.2s linear;
+      }
+
+      /* Hovered link maintains full opacity */
+      .hero-text a:hover,
+      .hero-text.yesovera {
+        opacity: 1 !important;
+        transition: all 0.2s linear;
+      }
+      ```
+
+      **JavaScript Logic:**
+      The system uses data attributes (`data-image="hero-image1"`) to map links to their corresponding background sections. On hover:
+      1. The linked background section gets class `overa` (opacity: 1, scale: 1.1)
+      2. The parent container gets class `overa` which dims all sibling spans via CSS selector
+      3. The hovered link itself maintains opacity through specific selector override
+
+      ### Key Parameters
+      - Background reveal transition: 0.3s ease-in-out
+      - Text dim transition: 0.2s linear
+      - Scale on active image: 1.1
+      - Opacity dimmed state: 0.2 (20%)
+
+      ### Reusable Move
+      `hover_reveal_background` — Text links that reveal fullscreen imagery while dimming surrounding content to create focused, immersive moments.
+
+<system-reminder>
+The risk is not borrowing too little — it is subconsciously simplifying what you borrowed. Cutting corners is forbidden in any form: never replace a reference's technique, material, structure, or motion with a cheaper version of your own. Downgrades follow repeatable patterns (illustrative, not exhaustive): input-driven motion (scroll/pointer/time) → one-shot keyframes or static states; shape-language transformation (morph/clip/mask) → the cheapest properties (scale/translate/opacity); asymmetric layout rhythm (irregular grids, editorial composition) → uniform columns and full-width stacks; layered material (blend/texture/depth) → flat single-layer fills; bespoke vessels (framing devices, illustrated components) → default cards and pills; choreographed sequences (staged, multi-step, gated) → single triggers or fakes; typographic systems (pairing/scale/font features) → swapping the font-family; styled components → library-default skins. If your version is simpler than the reference's, that is a downgrade. Implement at the reference's fidelity.
+</system-reminder>

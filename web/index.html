@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Сага Мьёльнира</title>
+  <link rel="stylesheet" href="/web/shared/styles.css">
+  <style>
+    body{display:grid;place-items:center;min-height:100vh;padding:1.5em;text-align:center}
+    .choice{display:grid;gap:1em;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:720px;margin:1.5em auto}
+    a.big{display:block;text-decoration:none;color:inherit;padding:1.6em 1em;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+    a.big:hover{border-color:var(--red2)}
+    a.big b{display:block;font-family:var(--serif);font-size:1.4em;margin-bottom:.3em}
+  </style>
+</head>
+<body>
+  <main>
+    <h1 style="font-size:2.6em">Сага Мьёльнира</h1>
+    <p class="muted">Кооперативная сага у северных фьордов. Диктор ведёт историю, вы решаете.</p>
+    <div class="choice">
+      <a class="big" href="/web/table/"><b>Стол</b><span class="muted">Экран для всех: ноутбук хоста или ТВ</span></a>
+      <a class="big" href="/web/hand/"><b>Руки</b><span class="muted">Телефон игрока: герой, действия, личные знания</span></a>
+    </div>
+  </main>
+</body>
+</html>

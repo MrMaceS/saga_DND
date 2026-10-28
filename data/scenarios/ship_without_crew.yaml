@@ -1,0 +1,174 @@
+# Сценарий «Корабль без команды» в виде данных. Движок читает этот файл, ИИ его не меняет.
+id: ship_without_crew
+title: Корабль без команды
+recommended_players: [2, 6]
+allowed_players: [2, 10]
+scaling: none            # число врагов, сложность и часы НЕ зависят от числа игроков
+time: night
+light: dark
+start_zone: pier
+
+scene_facts: [драккар у пирса, рулевое весло, канаты, люк в трюм, "ночь, мокрые паруса"]
+
+# Ключевые тайны сцены: их нельзя называть в текстах уровней 1 и 2.
+secret_names: [Тьёдвар, Утопленник, Сигурд]
+
+locations:
+  ship:  {name: Корабль, zones: [deck, hold, mast, cabin, pier]}
+  shore: {name: Берег,   zones: [rocks, trail]}
+
+adjacency:
+  deck: [pier, hold, mast, cabin]
+  hold: [deck]
+  mast: [deck]
+  cabin: [deck]
+  pier: [deck, rocks]
+  rocks: [pier, trail]
+  trail: [rocks]
+
+cross_location_links:      # переход между локациями происходит в конце раунда
+  - {from: pier, to: rocks}
+
+layout:                    # подсказка для отрисовки карты (0..100); без неё фронтенд раскладывает граф сам
+  trail: [8, 18]
+  rocks: [14, 52]
+  pier: [38, 52]
+  deck: [62, 52]
+  mast: [62, 18]
+  hold: [62, 86]
+  cabin: [88, 52]
+
+zone_names:                # имя зоны показывается только после первого посещения
+  deck: Палуба
+  hold: Трюм
+  mast: Мачта
+  cabin: Каюта
+  pier: Пирс
+  rocks: Камни
+  trail: Тропа
+
+zone_aliases:              # для интерпретатора: слова игрока сводятся к зонам
+  hold: [трюм, люк, низ]
+  deck: [палуба]
+  mast: [мачта]
+  cabin: [каюта]
+  pier: [пирс, причал]
+  rocks: [камни, валуны, берег]
+
+tasks:
+  - id: check_hold
+    closes_clock_at_level: 2   # разобрались в угрозе: её часы перестают тикать
+    zone: hold
+    title: Проверить трюм
+    public_start_level: 1   # явление описано в открывающей кат-сцене
+    group_bonus: true       # вдвоём проще (тег with_partner), в одиночку сложнее (alone)
+    levels:
+      1: В трюме кто-то есть
+      2: Он не человек, на нём железные оковы с рунами
+      3: Это Тьёдвар, управляющий Сигурда; он знает, где ярл и кто предал клан
+    chip_phrases: {1: Прислушаться к стуку, 2: Спуститься в трюм}
+    ignored_clock: third_strike
+  - id: hold_ship
+    closes_clock_at_level: 2   # разобрались в угрозе: её часы перестают тикать
+    zone: pier
+    title: Удержать корабль
+    public_start_level: 1
+    levels:
+      1: Якорь держится на последнем канате
+      2: Канат перетёрт изнутри, его подрезали
+      3: На канате руна морской богини, корабль сам хочет уйти к ней
+    chip_phrases: {1: Проверить канат, 2: Закрепить корабль}
+    ignored_clock: anchor
+  - id: scout_shore
+    closes_clock_at_level: 2   # разобрались в угрозе: её часы перестают тикать
+    zone: rocks
+    title: Осмотреть берег
+    public_start_level: 1
+    levels:
+      1: К кораблю приближаются тени
+      2: Их трое, они двигаются слишком ровно и не оставляют следов
+      3: Это стражи тумана, они ищут того, кто в трюме, и пойдут за ним в селение
+    chip_phrases: {1: Следить за тенями, 2: Осмотреть берег}
+    ignored_clock: shore_shadows
+  - id: search_deck
+    zone: deck
+    title: Осмотреть палубу
+    optional: true          # открывается свободным действием игрока
+    levels:
+      1: На палубе есть что осмотреть
+      2: Под перевёрнутой шлюпкой лежит мешочек
+      3: В мешочке пергамент «Не открывайте трюм до третьего удара»
+    chip_phrases: {1: Осмотреть палубу}
+
+# location: локация, первое посещение которой запускает часы
+clocks:
+  - {id: third_strike, name: Третий удар, location: ship, segments: 3, start: 1, task: check_hold,
+     icon: knock, change_phrase: "Стук в трюме становится громче", on_full: hold_breaks, cutscene_on_full: cs_third_strike,
+     on_full_text: "Люк трескается, и из трюма поднимается холод"}
+  - {id: anchor, name: Якорь, location: ship, segments: 4, start: 0, task: hold_ship,
+     icon: anchor, change_phrase: "Канат натягивается сильнее", on_full: ship_drifts, cutscene_on_full: cs_anchor_lost,
+     on_full_text: "Канат лопается, и драккар уходит в туман"}
+  - {id: shore_shadows, name: Тени на берегу, location: ship, segments: 6, start: 2, task: scout_shore,
+     icon: shadows, change_phrase: "Тени на берегу подступили ближе", milestones: {3: guards_enter_pier}, on_full: guards_find_settlement,
+     cutscene_at: {3: cs_shadows_pier},
+     milestone_text: {3: "Тени выходят на пирс"},
+     on_full_text: "Тени находят дорогу к селению"}
+
+enemies:                   # состав фиксирован для любого числа игроков
+  - {id: guard_1, kind: fog_guard, level: 12, cells: 2, equipment: none, fears: [fire, iron], zone: rocks}
+  - {id: guard_2, kind: fog_guard, level: 12, cells: 2, equipment: none, fears: [fire, iron], zone: rocks}
+  - {id: guard_3, kind: fog_guard, level: 12, cells: 2, equipment: none, fears: [fire, iron], zone: rocks}
+joins_combat_when: {clock: shore_shadows, at_least: 3}
+
+npcs:
+  - {id: tyodvar, name: Тьёдвар Утопленник, zone: hold, state: captive,
+     level: 14, cells: 3, attitude: neutral}
+
+terrain:                   # типы: position, height, fire, entangle
+  - {id: barrel_tar, zone: pier, type: fire, names: [бочка, бочка со смолой]}
+  - {id: rope_mooring, zone: pier, type: entangle, names: [канат, швартов]}
+  - {id: gangway, zone: pier, type: position, names: [трап]}
+  - {id: rocks_cover, zone: rocks, type: position, names: [камни, валуны]}
+  - {id: mast_height, zone: mast, type: height, names: [мачта]}
+
+views:                     # картинки «Вид» по уровню раскрытия зоны
+  pier: {2: views/pier_night}
+  deck: {3: views/deck_night}
+  hold: {1: views/hold_1, 2: views/hold_2, 3: views/hold_3}
+  rocks: {1: views/rocks_1, 2: views/rocks_2}
+
+item_defs:                 # предметы занимают слоты рюкзака, улики лежат на отдельной полке
+  pouch_silver: {name: "мешочек с тремя серебряными монетами", kind: item}
+  parchment_third_strike: {name: "пергамент", kind: clue, text: "На пергаменте всего несколько слов: «Не открывайте трюм до третьего удара»."}
+  comb_fresh_rune: {name: "сломанный гребень", kind: clue, text: "Сломанный гребень с вырезанной руной, слишком свежей, чтобы быть старой."}
+
+rolls:
+  check_hold:
+    base: normal
+    outcomes:
+      great_success: {info_level: 3}
+      success: {info_level: 2}
+      minimal_success: {info_level: 1}
+      fail: {clocks: {anchor: 1}}
+      fail_with_consequence: {effects: [torch_out, grab_check_10]}
+      critical_fail: {clocks: {shore_shadows: 2}, effects: [strike_sounds_outside]}
+  search_deck:
+    base: normal
+    outcomes:
+      success: {info_level: 3, items: [pouch_silver, parchment_third_strike]}
+      minimal_success: {info_level: 1, items: [comb_fresh_rune]}
+      fail: {}
+      fail_with_consequence: {clocks: {third_strike: 1}}
+      critical_fail: {clocks: {third_strike: 1}, effects: [light_wound_first_hero_in_zone]}
+
+cutscenes:
+  - {id: cs_ship_arrives, trigger: scene_start}
+  - {id: cs_shadows_pier, trigger: clock_milestone}
+  - {id: cs_third_strike, trigger: clock_full}
+  - {id: cs_hold_reveal, trigger: task_level, task: check_hold, level: 3}
+  - {id: cs_anchor_lost, trigger: clock_full}
+  - {id: cs_defeat_guards, trigger: combat_defeat}
+  - {id: cs_end_free, trigger: end, fate: free}
+  - {id: cs_end_interrogate, trigger: end, fate: interrogate}
+  - {id: cs_end_kill, trigger: end, fate: kill}
+  - {id: cs_end_leave, trigger: end, fate: leave}

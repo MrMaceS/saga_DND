@@ -1,0 +1,31 @@
+body{overflow:auto}
+.screen{max-width:980px;margin:0 auto;padding:2em 1em}
+.stories{display:grid;gap:.8em;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.story{text-align:left;padding:1em;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);cursor:pointer}
+.story.sel{border-color:var(--red2);background:#241617}.story.off{opacity:.45;cursor:not-allowed}
+.big-code{font-family:var(--serif);font-size:3.2em;letter-spacing:.2em;color:var(--gold)}
+.players{display:grid;gap:.5em;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.player{display:flex;gap:.6em;align-items:center;padding:.5em .7em;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.stepper{display:flex;gap:.4em;flex-wrap:wrap}.stepper button{min-width:44px;padding:.4em}.stepper button.sel{background:var(--red);border-color:var(--red2)}
+/* игра */
+.play{display:grid;grid-template-columns:1fr 330px;grid-template-rows:auto 1fr auto auto;gap:.8em;height:100vh;padding:.8em;max-width:1700px;margin:0 auto}
+.top{grid-column:1/-1;display:flex;gap:.7em;align-items:center;flex-wrap:wrap}
+.focus{grid-column:1;grid-row:2;min-height:0}
+.side{grid-column:2;grid-row:2/4;display:flex;flex-direction:column;gap:.8em;overflow:auto}
+.tiles{grid-column:1;grid-row:3;display:flex;gap:.6em;flex-wrap:wrap}
+.tile{display:flex;gap:.4em;align-items:center;padding:.4em .7em;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.narr{grid-column:1/-1;grid-row:4;background:#0f1218;border:1px solid var(--line);border-radius:var(--radius);padding:.8em 1.2em;min-height:5.4em;font-family:var(--serif);font-size:1.25em;line-height:1.45}
+.narr .who{color:var(--gold);font-size:.7em;display:block;font-family:var(--font)}
+.clocks{display:flex;gap:.6em;flex-wrap:wrap;justify-content:center;min-height:100px}
+.banner{background:#2d2312;border:1px solid var(--gold);color:var(--gold);padding:.4em .8em;border-radius:var(--radius)}
+.overlay{position:fixed;inset:0;background:#000d;z-index:50;display:grid;place-items:center;padding:2em;text-align:center}
+.overlay .sub{font-family:var(--serif);font-size:clamp(1.4em,3vw,2.4em);line-height:1.5;max-width:900px;min-height:4em}
+.overlay .letter{position:absolute;left:0;right:0;height:11vh;background:#000}.overlay .letter.t{top:0}.overlay .letter.b{bottom:0}
+.dice{background:var(--panel);border:2px solid var(--gold);border-radius:18px;padding:1.5em 2.4em;min-width:340px}
+.dice .num{font-family:var(--serif);font-size:5em;color:var(--bone)}
+.dice.spin .num{animation:pulse .25s infinite}
+@keyframes pulse{50%{opacity:.5}}
+@media (max-width:900px){.play{grid-template-columns:1fr;height:auto}.side,.tiles,.focus,.narr{grid-column:1;grid-row:auto}.focus{height:60vh}}
+.overlay .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6}
+.overlay .fg{position:relative;z-index:2;text-shadow:0 2px 12px #000}
+.overlay .letter{z-index:1}
